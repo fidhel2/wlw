@@ -3,36 +3,36 @@ var d = document;
 if (d.getElementById('wlw_custom')==null) {
 
 var p1 = d.querySelectorAll('.block_playdata_01_text');
-// g—p—¦ ... usage rate
+// ä½¿ç”¨ç‡ ... usage rate
 var ur = parseFloat(p1[0].innerHTML);
-// Ÿ—˜” ... win count
+// å‹åˆ©æ•° ... win count
 var wc = parseInt(p1[1].innerHTML);
-// ‘Œ‚”j” ... crush count
+// ç·æ’ƒç ´æ•° ... crush count
 var crc = parseInt(p1[2].innerHTML);
-// ‘“P‘Ş” ... withdraw count
+// ç·æ’¤é€€æ•° ... withdraw count
 var wdc = parseInt(p1[3].innerHTML);
 
 var p2 = d.querySelectorAll('.block_playdata_02_text');
-// ƒLƒƒƒXƒg•Ê•]‰¿(•½‹Ï) ... total page
+// ã‚­ãƒ£ã‚¹ãƒˆåˆ¥è©•ä¾¡(å¹³å‡) ... total page
 var tp = parseFloat(p2[0].innerHTML);
-// Ÿ—˜(•½‹Ï) ... win page
+// å‹åˆ©æ™‚(å¹³å‡) ... win page
 var wp = parseFloat(p2[1].innerHTML);
-// ”s–k(•½‹Ï) ... lose page
+// æ•—åŒ—æ™‚(å¹³å‡) ... lose page
 var lp = parseFloat(p2[2].innerHTML);
 
-// Šl“¾ƒiƒCƒX(•½‹Ï) ... total nice
+// ç²å¾—ãƒŠã‚¤ã‚¹(å¹³å‡) ... total nice
 var tn = parseFloat(p2[3].innerHTML);
-// Ÿ—˜(•½‹Ï) ... win nice
+// å‹åˆ©æ™‚(å¹³å‡) ... win nice
 var wn = parseFloat(p2[4].innerHTML);
-// ”s–k(•½‹Ï) ... lose nice
+// æ•—åŒ—æ™‚(å¹³å‡) ... lose nice
 var ln = parseFloat(p2[5].innerHTML);
 
-// ”s–k” ... lose count
+// æ•—åŒ—æ•° ... lose count
 var lc = 0;
 if ((tp-lp)!=0) {
 	lc = parseInt(Math.round((wp-tp)*wc/(tp-lp)));
 } 
-// Ÿ—¦ ... win rate
+// å‹ç‡ ... win rate
 var wr = 0;
 if ((wc+lc)!=0) {
 	wr = Math.round(wc/(wc+lc)*100*10)/10;
@@ -43,57 +43,57 @@ if (wdc!=0) {
 	kr = Math.round(crc/wdc*100)/100;
 }
 
-// ‘SƒLƒƒƒXƒgŸ—¦ ... all win rate
+// å…¨ã‚­ãƒ£ã‚¹ãƒˆå‹ç‡ ... all win rate
 var awr = 0;
-// ‘SƒLƒƒƒXƒgŸ—˜” ... all win count
+// å…¨ã‚­ãƒ£ã‚¹ãƒˆå‹åˆ©æ•° ... all win count
 var awc = 0;
-// ‘SƒLƒƒƒXƒg”s–k” ... all lose count
+// å…¨ã‚­ãƒ£ã‚¹ãƒˆæ•—åŒ—æ•° ... all lose count
 var alc = 0;
-// ŠeƒLƒƒƒXƒg‚ÌŸ—¦ ... cast win rate array
+// å„ã‚­ãƒ£ã‚¹ãƒˆã®å‹ç‡ ... cast win rate array
 var cwra = [];
-// ŠeƒLƒƒƒXƒg‚ÌŸ—˜” ... cast win count array
+// å„ã‚­ãƒ£ã‚¹ãƒˆã®å‹åˆ©æ•° ... cast win count array
 var cwca = [];
-// ŠeƒLƒƒƒXƒg‚Ì”s–k” ... cast lose count array
+// å„ã‚­ãƒ£ã‚¹ãƒˆã®æ•—åŒ—æ•° ... cast lose count array
 var clca = [];
-// MEMO: ƒLƒƒƒXƒg’Ç‰Á‚Ìb’è‘Î‰‚ÍAdci‚Ædcn‚ğ’Ç‰Á‚Å‘Î‰‚·‚é
-// •\¦‚·‚éŠeƒLƒƒƒXƒg‚ÌID ... display cast id
+// MEMO: ã‚­ãƒ£ã‚¹ãƒˆè¿½åŠ æ™‚ã®æš«å®šå¯¾å¿œã¯ã€dciã¨dcnã‚’è¿½åŠ ã§å¯¾å¿œã™ã‚‹
+// è¡¨ç¤ºã™ã‚‹å„ã‚­ãƒ£ã‚¹ãƒˆã®ID ... display cast id
 var dci = [0, 32, 1, 33, 9, 41, 2, 34, 11, 43, 13, 45, 3, 35, 7, 39, 5, 37, 8, 40, 6, 20, 52 ];
-// •\¦‚·‚éŠeƒLƒƒƒXƒg‚Ì–¼‘O ... display cast name
-var dcn = ["ƒTƒ“ƒhƒŠƒˆƒ“", "ƒAƒVƒFƒ“ƒvƒeƒ‹", "‹g”õ’Ã•F", "ˆÅ‹g”õ’Ã", "”üàË", "‘å¹",
-		"ƒs[ƒ^[EƒUEƒLƒbƒh", "ƒiƒCƒgƒƒAEƒLƒbƒh", "ƒVƒŒƒlƒbƒ^", "ƒƒƒE",
-		"ƒ~ƒNƒT", "ƒŠƒ“","ƒŠƒgƒ‹EƒAƒŠƒX", "ƒVƒƒƒhƒEEƒAƒŠƒX", "ƒAƒCƒAƒ“EƒtƒbƒN",
-		"ƒfƒXEƒtƒbƒN", "ƒXƒJ[ƒŒƒbƒg", "ƒ”ƒ@ƒCƒX", "‚©‚®‚â", "ƒcƒNƒˆƒ~", "‰·—…",
-		"ƒhƒ‹ƒ~[ƒ‹", "ƒGƒs[ƒk"];
-// ‰Šú‰»
+// è¡¨ç¤ºã™ã‚‹å„ã‚­ãƒ£ã‚¹ãƒˆã®åå‰ ... display cast name
+var dcn = ["ã‚µãƒ³ãƒ‰ãƒªãƒ¨ãƒ³", "ã‚¢ã‚·ã‚§ãƒ³ãƒ—ãƒ†ãƒ«", "å‰å‚™æ´¥å½¦", "é—‡å‰å‚™æ´¥", "ç¾çŒ´", "å¤§è–",
+		"ãƒ”ãƒ¼ã‚¿ãƒ¼ãƒ»ã‚¶ãƒ»ã‚­ãƒƒãƒ‰", "ãƒŠã‚¤ãƒˆãƒ¡ã‚¢ãƒ»ã‚­ãƒƒãƒ‰", "ã‚·ãƒ¬ãƒãƒƒã‚¿", "ãƒ¡ãƒ­ã‚¦",
+		"ãƒŸã‚¯ã‚µ", "ãƒªãƒ³","ãƒªãƒˆãƒ«ãƒ»ã‚¢ãƒªã‚¹", "ã‚·ãƒ£ãƒ‰ã‚¦ãƒ»ã‚¢ãƒªã‚¹", "ã‚¢ã‚¤ã‚¢ãƒ³ãƒ»ãƒ•ãƒƒã‚¯",
+		"ãƒ‡ã‚¹ãƒ»ãƒ•ãƒƒã‚¯", "ã‚¹ã‚«ãƒ¼ãƒ¬ãƒƒãƒˆ", "ãƒ´ã‚¡ã‚¤ã‚¹", "ã‹ãã‚„", "ãƒ„ã‚¯ãƒ¨ãƒŸ", "æ¸©ç¾…",
+		"ãƒ‰ãƒ«ãƒŸãƒ¼ãƒ«", "ã‚¨ãƒ”ãƒ¼ãƒŒ"];
+// åˆæœŸåŒ–
 for (var i = 0; i < dci.length; i++) {
 	cwra[dci[i]] = 0;
 	cwca[dci[i]] = 0;
 	clca[dci[i]] = 0;
 }
 
-// ƒLƒƒƒXƒgID ... cast id
-// •¶š”ˆ³k‚Ì‚½‚ßAƒpƒ‰ƒ[ƒ^‚Ícast‚ğ‘O’ñ‚Æ‚·‚é
+// ã‚­ãƒ£ã‚¹ãƒˆID ... cast id
+// æ–‡å­—æ•°åœ§ç¸®ã®ãŸã‚ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯castã‚’å‰æã¨ã™ã‚‹
 var q = window.location.search.substring(1);
 var ci = q.split("=")[1];
 var pci = "p" + ci;
 
-// ƒLƒƒƒXƒgƒf[ƒ^ ... cast data
-// ‘O‰ñ‚ÌƒLƒƒƒXƒgƒf[ƒ^ ... pre cast data
-// “úî•ñAg—p—¦AŸ—˜”A”s–k”AŸ—¦A‘Œ‚”j”A‘“P‘Ş”AKill RatioA
-// ƒLƒƒƒXƒg•Ê•]‰¿(•½‹Ï)AŸ—˜(•½‹Ï)A”s–k(•½‹Ï)A
-// Šl“¾ƒiƒCƒX(•½‹Ï)AŸ—˜(•½‹Ï)A”s–k(•½‹Ï)
+// ã‚­ãƒ£ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ ... cast data
+// å‰å›ã®ã‚­ãƒ£ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ ... pre cast data
+// æ—¥æ™‚æƒ…å ±ã€ä½¿ç”¨ç‡ã€å‹åˆ©æ•°ã€æ•—åŒ—æ•°ã€å‹ç‡ã€ç·æ’ƒç ´æ•°ã€ç·æ’¤é€€æ•°ã€Kill Ratioã€
+// ã‚­ãƒ£ã‚¹ãƒˆåˆ¥è©•ä¾¡(å¹³å‡)ã€å‹åˆ©æ™‚(å¹³å‡)ã€æ•—åŒ—æ™‚(å¹³å‡)ã€
+// ç²å¾—ãƒŠã‚¤ã‚¹(å¹³å‡)ã€å‹åˆ©æ™‚(å¹³å‡)ã€æ•—åŒ—æ™‚(å¹³å‡)
 var now = new Date().getTime();
 var cd = [now, ur, wc, lc, wr, crc, wdc, kr, tp, wp, lp, tn, wn, ln];
 var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var ppcd = pcd.concat();
 
 var day = 1000*3600*24;
-// Cookie‚Ì—LŒøŠúŒÀ(365“úŠÔ)
+// Cookieã®æœ‰åŠ¹æœŸé™(365æ—¥é–“)
 var ex = new Date();
 ex.setTime(now+day*365);
 
-// Cookie‚Ì“Ç‚İ‚İ
-// ‘O‰ñ‚ÌƒLƒƒƒXƒgƒf[ƒ^‚ğæ“¾
+// Cookieã®èª­ã¿è¾¼ã¿
+// å‰å›ã®ã‚­ãƒ£ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 if (d.cookie) {
 	var c = d.cookie.split(";");
 	for (var i = 0; i < c.length; i++) {
@@ -130,12 +130,12 @@ cwra[ci] = wr;
 cwca[ci] = wc;
 clca[ci] = lc;
 
-// g—p—¦AŸ—˜”AƒLƒƒƒXƒg•Ê•]‰¿(•½‹Ï)AŸ—˜(•½‹Ï)A”s–k(•½‹Ï)‚Å”äŠr
+// ä½¿ç”¨ç‡ã€å‹åˆ©æ•°ã€ã‚­ãƒ£ã‚¹ãƒˆåˆ¥è©•ä¾¡(å¹³å‡)ã€å‹åˆ©æ™‚(å¹³å‡)ã€æ•—åŒ—æ™‚(å¹³å‡)ã§æ¯”è¼ƒ
 if (cd[1]!=pcd[1] || cd[2]!=pcd[2] || cd[8]!=pcd[8] || cd[9]!=pcd[9] || cd[10]!=pcd[10]) {
 	d.cookie = ci + "=" + escape(cd.join(":")) + "; expires=" + ex.toUTCString();
 }
 
-// 24:00‚ğ‹N“_‚Æ‚µ‚Ä”äŠr‚·‚é
+// 24:00ã‚’èµ·ç‚¹ã¨ã—ã¦æ¯”è¼ƒã™ã‚‹
 var base = new Date();
 base.setTime(pcd[0]);
 base.setHours(23);
@@ -147,7 +147,7 @@ if (now > base.getTime()) {
 	pcd = ppcd;
 }
 
-// HTML‚Ì‘‚«Š·‚¦
+// HTMLã®æ›¸ãæ›ãˆ
 var fi = d.querySelector('.frame_inner');
 var nfi = fi.cloneNode(true);
 nfi.id = "wlw_custom";
@@ -159,12 +159,12 @@ function insert(i, t1, t2) {
 	t[1].innerHTML = t2;
 	nfi.insertBefore(e, p[i]);
 }
-insert(2,"”s–k”",lc+"<span class=\"font_small\">”s</span>");
-insert(2,"Ÿ—¦",wr+"%");
+insert(2,"æ•—åŒ—æ•°",lc+"<span class=\"font_small\">æ•—</span>");
+insert(2,"å‹ç‡",wr+"%");
 insert(4,"Kill Ratio",kr);
 function diff(i, t) {
 	var iad = Math.round((cd[i]-pcd[i])*100)/100;
-	var pm = "}";
+	var pm = "Â±";
 	if (iad>0) {
 		pm = "+";
 	}
@@ -182,11 +182,11 @@ var np2 = nfi.querySelectorAll('.block_playdata_02_text');
 for (var i = 0; i < 6; i++) {
 	diff(i+8, np2[i]);
 }
-insert(6, "‘SƒLƒƒƒXƒgŸ—¦", awr+"% <span class=\"font_small\">("+awc+"Ÿ"+alc+"”s)</span>");
+insert(6, "å…¨ã‚­ãƒ£ã‚¹ãƒˆå‹ç‡", awr+"% <span class=\"font_small\">("+awc+"å‹"+alc+"æ•—)</span>");
 for (var i = 0; i < dci.length; i++) {
-	// ‡”‚ª0‚ÌƒLƒƒƒXƒg‚Í•\¦‚µ‚È‚¢
+	// è©¦åˆæ•°ãŒ0ã®ã‚­ãƒ£ã‚¹ãƒˆã¯è¡¨ç¤ºã—ãªã„
 	if ((cwca[dci[i]]+clca[dci[i]])>0) {
-		insert(6, "<span class=\"font_90\">"+dcn[i]+"</span>", cwra[dci[i]]+"% <span class=\"font_small\">("+cwca[dci[i]]+"Ÿ"+clca[dci[i]]+"”s)</span>");		
+		insert(6, "<span class=\"font_90\">"+dcn[i]+"</span>", cwra[dci[i]]+"% <span class=\"font_small\">("+cwca[dci[i]]+"å‹"+clca[dci[i]]+"æ•—)</span>");		
 	}
 }
 
